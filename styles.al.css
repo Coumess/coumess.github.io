@@ -91,10 +91,10 @@ a {
     font-size: 14px;
 }
 
-.vis-item-selected {
+.vis-item.vis-item.vis-selected {
     background-color: rgba(60, 120, 80, 1);
-    border: black;
-}   
+    border-color: black;
+}
 
 #visualization {   
     width: auto;
