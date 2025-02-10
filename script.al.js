@@ -12,28 +12,67 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     var items = new DataSet([
-        { id: 1, content: 'Naissance de Coumess', start: '2001-02-08' },
-        { id: 2, content: 'Guerre de Cent Ans', start: '1337-05-24', end: '1453-10-09'},
-        { id: 3, content: 'Test de Turing', start: '1950-10' },
-        { id: 4, content: "Adoption du drapeau Népalais", start: '1962-12-16' },
+        { 
+            id: 1, 
+            content: 'Naissance de Coumess', 
+            start: '2001-02-08',
+            description: "Naissance d'une personne extraordinaire qui posera un jour des questions sur les timelines.",
+        },
+        { 
+            id: 2, 
+            content: 'Guerre de Cent Ans', 
+            start: '1337-05-24', 
+            end: '1453-10-09',
+            description: "Série de conflits opposant le royaume d'Angleterre et le royaume de France. Malgré son nom, elle a duré 116 ans.",
+        },
+        { 
+            id: 3, 
+            content: 'Test de Turing', 
+            start: '1950-10',
+            description: "Test proposé par Alan Turing pour évaluer la capacité d'une machine à imiter une conversation humaine."
+        },
+        { 
+            id: 4, 
+            content: "Adoption du drapeau Népalais", 
+            start: '1962-12-16',
+            className: 'decade-only',
+            description: "Adoption officielle du seul drapeau national non rectangulaire au monde."
+        }
     ]);
 
     var today = new Date().toISOString().split("T")[0];
-
-
     
-
-    var options = {
+    var options = { 
         showCurrentTime: true,
         stack: true,
         stack: false,
         zoomable: true,
         editable: false,
         locale: 'fr',
-        start: '1945-01-01',
+        start: '1300-01-01',
         end: today,
+        min: new Date(-600, 0, 1),
+        max: new Date(2050, 0, 1),
     };
 
 
     var timeline = new Timeline(container, items, options);
+
+    // Ajouter l'événement de clic
+    timeline.on('select', function(properties) {
+        const eventDetails = document.getElementById('event-details');
+        if (properties.items.length > 0) {
+            const selectedItem = items.get(properties.items[0]);
+            if (selectedItem.description) {
+                eventDetails.innerHTML = `
+                    <h3>${selectedItem.content}</h3>
+                    ${selectedItem.image ? `<img src="${selectedItem.image}" alt="${selectedItem.content}" style="max-width: 300px; margin: 10px 0;">` : ''}
+                    <p>${selectedItem.description}</p>
+                `;
+                eventDetails.style.display = 'block';
+            }
+        } else {
+            eventDetails.style.display = 'none';
+        }
+    });
 });

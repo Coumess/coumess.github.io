@@ -104,6 +104,9 @@ a {
     font-family: 'Baskervville'; 
     border: 5px solid lightgray;
 }
+#event-details { 
+    margin-top: 20px; padding: 10px; border: 1px solid #ccc; display: none;
+}
 
 
 
