@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
             id: 1, 
             content: 'Naissance de Coumess', 
             start: '2001-02-08',
-            description: "Naissance d'une personne extraordinaire qui posera un jour des questions sur les timelines.",
+            description: "Naissance d'une personne simple.",
         },
         { 
             id: 2, 
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
         start: '1300-01-01',
         end: today,
         min: new Date(-600, 0, 1),
-        max: new Date(2050, 0, 1),
+        max: new Date(2048, 0, 1),
     };
 
 
