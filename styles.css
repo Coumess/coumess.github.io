@@ -17,6 +17,14 @@ body{
     background-image: url(images/books.jpeg);
     margin:0;
 }
+#dérobade{
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 57vw;
+    width: 3.6vw;
+    height: 10.5vh;
+}
 .header {
     display: flex;
     align-items: center;
