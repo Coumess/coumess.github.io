@@ -52,7 +52,10 @@ document.addEventListener("DOMContentLoaded", function () {
         start: '1300-01-01',
         end: today,
         min: new Date(-600, 0, 1),
-        max: new Date(2048, 0, 1),
+        max: new Date(2050, 0, 1),
+        zoomMin: 1000 * 60 * 60 * 24 * 7, // Zoom une semaine
+        zoomMax: 1000 * 60 * 60 * 24 * 365 * 1000, // Dezoom 1000 ans
+        mousewheel: true,
     };
 
 
