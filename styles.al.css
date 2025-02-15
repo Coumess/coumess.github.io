@@ -8,10 +8,12 @@
     background-color: rgba(61, 120, 80, 1);
     border-color: black;
 }
+.vis-item.vis-point.vis-selected {
+    background-color: rgba(61, 120, 80, 1)!important;
+}
 
 #visualization {   
-    width: auto;
-    height: auto;
+    box-sizing: border-box;
     margin: 20px;   
     background-color: rgba(64, 51, 48, 1);  
     font-family: 'Baskervville'; 
@@ -24,3 +26,6 @@
     border: 1px solid #ccc;
     display: none;
 }
+.vis-time-axis .vis-grid.vis-odd {
+    background: #51413D;
+  }

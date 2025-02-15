@@ -17,6 +17,8 @@ document.addEventListener("DOMContentLoaded", function () {
             content: 'Naissance de Coumess', 
             start: '2001-02-08',
             description: "Naissance d'une personne simple.",
+            type: "point",
+            group:0,
         },
         { 
             id: 2, 
@@ -24,24 +26,31 @@ document.addEventListener("DOMContentLoaded", function () {
             start: '1337-05-24', 
             end: '1453-10-09',
             description: "Série de conflits opposant le royaume d'Angleterre et le royaume de France. Malgré son nom, elle a duré 116 ans.",
+            group: 0,
         },
         { 
             id: 3, 
             content: 'Test de Turing', 
             start: '1950-10',
-            description: "Test proposé par Alan Turing pour évaluer la capacité d'une machine à imiter une conversation humaine."
+            description: "Test proposé par Alan Turing pour évaluer la capacité d'une machine à imiter une conversation humaine.",
+            group: 2,
         },
         { 
             id: 4, 
             content: "Adoption du drapeau Népalais", 
             start: '1962-12-16',
-            className: 'decade-only',
-            description: "Adoption officielle du seul drapeau national non rectangulaire au monde."
+            description: "Adoption officielle du seul drapeau national non rectangulaire au monde.",
+            group: 1,
         }
     ]);
 
     var today = new Date().toISOString().split("T")[0];
-    
+    var groups = new DataSet([
+        {id: 0, content: "Histoire", className: 'hist' ,},
+        {id: 1, content: "Culture"},
+        {id: 2, content: "Informatique"}
+    ]);
+
     var options = { 
         showCurrentTime: true,
         stack: true,
@@ -56,10 +65,13 @@ document.addEventListener("DOMContentLoaded", function () {
         zoomMin: 1000 * 60 * 60 * 24 * 7, // Zoom une semaine
         zoomMax: 1000 * 60 * 60 * 24 * 365 * 1000, // Dezoom 1000 ans
         mousewheel: true,
+        loadingScreenTemplate: function () {
+            return "<h1>Loading...</h1>";
+          },
     };
 
 
-    var timeline = new Timeline(container, items, options);
+    var timeline = new Timeline(container, items, groups, options);
 
     // Ajouter l'événement de clic
     timeline.on('select', function(properties) {
