@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var today = new Date().toISOString().split("T")[0];
     var groups = new DataSet([
-        {id: 0, content: "Histoire", className: 'hist' ,},
+        {id: 0, content: "Histoire", className: 'gr1'},
         {id: 1, content: "Culture"},
         {id: 2, content: "Informatique"}
     ]);
