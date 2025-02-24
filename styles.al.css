@@ -30,8 +30,8 @@
     background: #51413D;
   }
 .vis-label{
-    color: white;
+    color: white!important;
 }
 .vis-labelset .vis-label {
-    color: white;
+    color: white!important;     
 }

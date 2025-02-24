@@ -41,12 +41,19 @@ document.addEventListener("DOMContentLoaded", function () {
             start: '1962-12-16',
             description: "Adoption officielle du seul drapeau national non rectangulaire au monde.",
             group: 1,
+        },
+        {
+            id: 5, 
+            content: "Fonction d'Ackermann", 
+            start: '1928-12',
+            description: "Publication de la fonction récursive non primitive. La fonction d’Ackermann est une fonction récursive extrême, qui croît plus rapidement que n'importe quelle fonction récursive primitive. Elle est utilisée en informatique pour tester les limites des systèmes de calcul et comme un exemple classique de fonction récursive difficile à gérer.",
+            group: 2,
         }
     ]);
 
     var today = new Date().toISOString().split("T")[0];
     var groups = new DataSet([
-        {id: 0, content: "Histoire", className: 'gr1'},
+        {id: 0, content: "Histoire"},
         {id: 1, content: "Culture"},
         {id: 2, content: "Informatique"}
     ]);
@@ -54,7 +61,6 @@ document.addEventListener("DOMContentLoaded", function () {
     var options = { 
         showCurrentTime: true,
         stack: true,
-        stack: false,
         zoomable: true,
         editable: false,
         locale: 'fr',
