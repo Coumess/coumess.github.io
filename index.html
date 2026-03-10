@@ -1,54 +1,159 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="styles.css" type="text/css" />
-        <link rel="icon" type="image/png" href="images/logo.jpg" sizes="16x16">
-        <link rel="icon" type="image/png" href="images/logo.jpg" sizes="32x32">
-        <title> Coumess | Accueil</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css" type="text/css" />
+    <link rel="icon" type="image/png" href="images/logo.jpg" sizes="16x16">
+    <link rel="icon" type="image/png" href="images/logo.jpg" sizes="32x32">
+    <title>Coumess | Accueil</title>
+</head>
 
-    <body>
-        <div class="tranche">
-            <a href="hiddenplaces.html">
-                <div id="dérobade"></div>
-            </a>
-        </div>
+<body>
+    <div class="tranche">
+        <a href="hiddenplaces.html">
+            <div id="dérobade"></div>
+        </a>
+    </div>
 
-        <div class="header">
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-                <ul>
-                    <li><a href="index.html">Accueil</a></li>    
-                    <li><a href="almanach.html">Almanach</a></li>
-                    <li>Projets</li>
-                </ul>
-            </div>
-            <h1><a href="index.html">COUMESS /   <span>Accueil</span></a></h1>
+    <div class="header">
+        <div class="hamburger">
+            <span></span><span></span><span></span>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>    
+                <li><a href="almanach.html">Almanach</a></li>
+            </ul>
         </div>
+        <h1><a href="index.html">COUMESS / <span>Accueil</span></a></h1>
+    </div>
+    
+    <div class="intro-section">
+        <span data-target="whoContent" data-title="Qui suis-je ?" class="clickable-text clickableDiv">
+            Qui suis-je ?
+        </span>
+    </div>
+
+    <div class="projects-grid" id="projets">
         
-        <div class="overContent" id="whoContent" style="display: none;">
-            <div class="popup-box">
-        <div class="close-btn" onclick="hideOverlay('whoContent')">×</div>
-        <div class="popup-info">
-            <h3>Who?</h3>
-            <p>
-                Hello, I'm Alexandre Coumes. I love neurosciences and coding some stupids things.
-                <br>I am both French and Swiss and I enjoy traveling.
-                <br><br>Feel free to email me - sebastian.s.straut@protonmail.com
-            </p>
+        <div data-target="terContent" data-title="TER L3" class="project-card clickableDiv">
+            <img src="images/bigbrain.jpg" alt="TER L3" class="card-image">
+            <div class="card-overlay">
+                <p class="card-title">TER de L3</p>
+                <p style="font-size:0.9rem; margin:5px 0 0 0; color:#ddd;">Recherche académique</p>
+            </div>
         </div>
-        <div class="popup-action">
-            <img src="images/greek.jpg" alt="Greek" style="width: 150px; opacity:0.8;">
+
+        <div data-target="almanachContent" data-title="L'Almanach" class="project-card clickableDiv">
+            <img src="images/almanachh.jpg" alt="Almanach" class="card-image">
+            <div class="card-overlay">
+                <p class="card-title">L'Almanach</p>
+                <p style="font-size:0.9rem; margin:5px 0 0 0; color:#ddd;">Chronologie Interactive</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="overContent" id="whoContent">
+        <div class="popup-box">
+            <div class="close-btn" onclick="hideOverlay('whoContent')">×</div>
+            <div class="popup-info">
+                <h3>Qui suis-je ?</h3>
+                <p>
+                    Hello, I'm Alexandre Coumes. I love neurosciences and coding some stupids things.
+                    <br><br>
+                    I am both French and Swiss and I enjoy traveling.
+                    <br><br>
+                    Feel free to email me - coumes.alexandre@proton.me
+                </p>
+            </div>
+            <div class="popup-action">
+                <img src="images/greek.jpg" style="max-width: 80%; border-radius: 50%; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+            </div>
         </div>
     </div>
+
+    <div class="overContent" id="terContent">
+        <div class="popup-box">
+            <div class="close-btn" onclick="hideOverlay('terContent')">×</div>
+            <div class="popup-info">
+                <h3>TER de L3</h3>
+                <p>
+                    Mon Travail d'Étude et de Recherche. Il s'agit d'une exploration académique détaillée.
+                    <br><br>
+                    Vous y retrouverez l'ensemble de ma méthodologie, mes recherches et mes conclusions.
+                </p>
+                <a href="#" target="_blank" class="action-btn">Consulter les travaux</a>
+            </div>
+            <div class="popup-action">
+                <img src="images/bigbrain.jpg" alt="Illustration TER" style="max-width: 100%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+            </div>
         </div>
+    </div>
 
-    </body>
+    <div class="overContent" id="almanachContent">
+        <div class="popup-box">
+            <div class="close-btn" onclick="hideOverlay('almanachContent')">×</div>
+            <div class="popup-info">
+                <h3>L'Almanach</h3>
+                <p>
+                    Projet chronologique interactif utilisant la bibliothèque vis-timeline pour naviguer dans le temps de manière visuelle et intuitive.
+                </p>
+                <a href="almanach.html" class="action-btn">Ouvrir l'Almanach</a>
+            </div>
+            <div class="popup-action">
+                <img src="images/almanachh.jpg" style="max-width: 100%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+            </div>
+        </div>
+    </div>
 
+    <script>
+        const originalTitle = document.title;
 
+        // Fonction pour fermer la fenêtre
+        function hideOverlay(id) {
+            const el = document.getElementById(id);
+            if(!el) return;
+            el.classList.remove('visible'); 
+            setTimeout(() => {
+                el.style.display = 'none'; 
+                document.title = originalTitle; 
+            }, 300);
+        }
 
+        // Fonction pour ouvrir la fenêtre
+        function showOverlay(id, clickedElement) {
+            const el = document.getElementById(id);
+            if(!el) return;
+            
+            if (clickedElement) {
+                const title = clickedElement.getAttribute('data-title');
+                if (title && title !== 'null') {
+                    document.title = title;
+                }
+            }
+
+            el.style.display = 'flex';
+            requestAnimationFrame(() => el.classList.add('visible'));
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // Écouteur de clic sur chaque élément cliquable (cartes ET texte "Qui suis-je")
+            document.querySelectorAll('.clickableDiv').forEach(div => {
+                div.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-target');
+                    showOverlay(targetId, this);
+                });
+            });
+
+            // Écouteur de clic pour fermer la popup
+            document.querySelectorAll('.overContent').forEach(over => {
+                over.addEventListener('click', function(e) {
+                    if(e.target === this) hideOverlay(this.id);
+                });
+            });
+            
+        });
+    </script>
+</body>
 </html>

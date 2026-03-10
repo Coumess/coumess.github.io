@@ -5,31 +5,40 @@
     font-style: normal;  
 }
 
-body{
+body {
     font-family: Helvetica, sans-serif;
-    margin:0;
-    background-color: #F6E9DF;
+    margin: 0;
+    background-color: #F6E9DF; /* Ton fond Beige */
 }
-.tranche{
+
+/* --- BANNIERE HAUT --- */
+.tranche {
     background-size: 100% auto;
     width: 100%;
     height: 100px;
-    background-image: url(images/books.jpeg);
-    margin:0;
+    background-image: url('images/books.jpeg');
+    background-position: center;
+    margin: 0;
+    position: relative;
 }
-#dérobade{
+
+#dérobade {
     cursor: pointer;
     position: absolute;
     top: 0;
     left: 57vw;
     width: 3.6vw;
-    height: 10.5vh;
+    height: 100px;
 }
+
+/* --- EN-TÊTE / HEADER --- */
 .header {
     display: flex;
     align-items: center;
     background-color: rgba(64, 51, 48, 1);
     padding: 10px 15px;
+    position: relative;
+    z-index: 100;
 }
 
 .hamburger {
@@ -46,65 +55,235 @@ body{
     display: block;
     height: 4px;
     width: 100%;
-    background-color: rgba(34, 21, 18, 1);;
+    background-color: #F6E9DF;
     border-radius: 2px;
 }
 
 h1 {
-    font-family: 'Baskervville';
+    font-family: 'Baskervville', serif;
     font-size: 24px;
-    color: rgba(34, 21, 18, 1);;
+    color: #F6E9DF;
     margin: 0;
 }
-span{
-	display:block;
-	font-size:medium;
+
+h1 a {
+    color: inherit;
+    text-decoration: none;
 }
 
+h1 span {
+    display: inline-block;
+    font-size: medium;
+    color: #d8c8b8;
+}
+
+/* Menu déroulant du Hamburger */
 .hamburger ul {
     display: none;
     position: absolute;
-    top: 55px;
+    top: 45px;
     left: 0;
-    background-color: rgba(64, 51, 48, 1); 
-    padding: 10px 15px;
+    background-color: rgba(64, 51, 48, 0.95); 
+    padding: 10px 0;
     list-style: none; 
     margin: 0;
-    border-radius: 5px;
+    min-width: 150px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
 }
 
 .hamburger:hover ul {
     display: block;
 }
 
-.hamburger ul li {
-    margin: 5px 0;
-    padding: 5px;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease; 
-}
-
-.hamburger ul li:hover {
-    background-color: rgba(54, 41, 38, 1);
-}
-a {
+.hamburger ul li a {
+    display: block;
+    padding: 10px 20px;
+    color: #F6E9DF;
     text-decoration: none;
-    color: inherit;
+    font-family: 'Baskervville', serif;
+    transition: background 0.3s;
 }
 
+.hamburger ul li a:hover {
+    background-color: rgba(34, 21, 18, 1);
+}
+
+/* ================= TEXTE CLIQUABLE (Qui suis-je) ================= */
+.intro-section {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+.clickable-text {
+    font-family: 'Baskervville', serif;
+    font-size: 1.8rem;
+    color: rgba(64, 51, 48, 0.8);
+    cursor: pointer;
+    display: inline-block;
+    transition: transform 0.3s ease, color 0.3s ease; /* Animation fluide */
+}
+
+.clickable-text:hover {
+    color: rgba(64, 51, 48, 1);
+    transform: scale(1.1); /* Le texte grossit au survol */
+}
+
+/* ================= GRILLE DES PROJETS (CARTES) ================= */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 20px 40px 40px 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.project-card {
+    position: relative;
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border: 2px solid rgba(64, 51, 48, 0.1);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s;
+    height: 250px;
+}
+
+.project-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    z-index: 10;
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.project-card:hover .card-image {
+    opacity: 0.6;
+    transform: scale(1.1);
+}
+
+.card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(64, 51, 48, 0.95), transparent);
+    box-sizing: border-box;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.3s ease;
+    color: #F6E9DF;
+}
+
+.project-card:hover .card-overlay {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.card-title {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin: 0;
+    font-family: 'Baskervville', serif;
+}
+
+/* ================= FENÊTRES POPUP (overContent) ================= */
 .overContent {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(10px);
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
     z-index: 2000;
     align-items: center;
     justify-content: center;
     opacity: 0;
     transition: opacity 0.3s;
+}
+
+.overContent.visible {
+    opacity: 1;
+}
+
+.popup-box {
+    width: 80%;
+    max-width: 1000px;
+    height: 70vh;
+    background: #F6E9DF;
+    border-radius: 20px;
+    display: flex;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    border: 2px solid rgba(64, 51, 48, 1);
+    position: relative;
+    color: rgba(34, 21, 18, 1);
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px; right: 20px;
+    font-size: 2.5rem;
+    color: rgba(64, 51, 48, 1);
+    cursor: pointer;
+    z-index: 10;
+    line-height: 0.5;
+}
+.close-btn:hover { color: #000; }
+
+.popup-info {
+    flex: 1;
+    padding: 50px;
+    overflow-y: auto;
+    border-right: 2px solid rgba(64, 51, 48, 0.2);
+}
+
+.popup-info h3 {
+    font-size: 1.8rem; margin-top: 0;
+    font-family: 'Baskervville', serif;
+    border-bottom: 2px solid rgba(64, 51, 48, 1); 
+    padding-bottom: 10px; margin-bottom: 20px;
+}
+
+.popup-info p {
+    font-size: 1rem; line-height: 1.6; text-align: justify;
+}
+
+.action-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 25px;
+    background-color: rgba(64, 51, 48, 1);
+    color: #F6E9DF;
+    text-decoration: none;
+    font-family: 'Baskervville', serif;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.action-btn:hover {
+    background-color: rgba(34, 21, 18, 1);
+}
+
+.popup-action {
+    flex: 1;
+    background: rgba(64, 51, 48, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    position: relative;
+}
+
+@media (max-width: 800px) {
+    .popup-box { flex-direction: column; height: 90vh; overflow-y: auto; }
+    .popup-info { border-right: none; border-bottom: 2px solid rgba(64, 51, 48, 0.2); }
 }
