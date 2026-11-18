@@ -1,0 +1,5 @@
+# Dépendances npm : se régénèrent avec `npm install`, n'ont rien à faire dans Git
+node_modules/
+
+# Clés et secrets locaux (on en aura besoin à l'étape 7 pour l'API Riot)
+.env
