@@ -19,6 +19,10 @@
 </head>
 
 <body>
+    <!-- Lien d'évitement : invisible, il apparaît au 1er appui sur Tab.
+         Il permet au clavier / lecteur d'écran de sauter la bannière et le menu. -->
+    <a href="#contenu" class="aller-contenu">Aller au contenu</a>
+
     <!-- ============ BANNIÈRE (l'étagère) ============
          <header> = l'en-tête de la page. Les livres secrets sont des liens
          posés par-dessus l'image (on les refera proprement aux étapes 6-7). -->
@@ -44,7 +48,7 @@
 
     <!-- ============ CONTENU PRINCIPAL ============
          <main> = le cœur unique de la page (un seul par page). -->
-    <main class="main-layout">
+    <main class="main-layout" id="contenu">
 
         <!-- <aside> = contenu "à côté" du sujet principal : ici, la fiche d'identité -->
         <aside class="sidebar">
@@ -196,7 +200,7 @@
                     </li>
                     <li>
                         <span class="date"><time datetime="2025">2025</time></span>
-                        <a class="pub-titre" href="https://github.com/Coumess/TER-MPVC-et-neurofeedbacl" target="_blank">
+                        <a class="pub-titre" href="https://github.com/Coumess/TER-MPVC-et-neurofeedback" target="_blank">
                             Maladie des petits vaisseaux cérébraux et neurofeedback ↗
                         </a>
                         <span class="pub-lieu">TER de L3</span>
@@ -227,7 +231,7 @@
         </div>
         <div class="popup-action">
             <!-- Ici l'image apporte une info (le placement des électrodes) : alt décrit -->
-            <img src="images/eeg-10-20.svg" alt="Schéma du système 10-20 de placement des électrodes EEG" class="popup-image">
+            <img src="images/eeg-10-20.svg" alt="Schéma du système 10-20 de placement des électrodes EEG" class="popup-image" loading="lazy">
         </div>
     </dialog>
 
@@ -285,7 +289,7 @@
             <a href="https://github.com/Coumess/TER-MPVC-et-neurofeedbacl" target="_blank" class="action-btn">Consulter les travaux</a>
         </div>
         <div class="popup-action">
-            <img src="images/bigbrain.jpg" alt="" class="popup-image">
+            <img src="images/bigbrain.jpg" alt="" class="popup-image" loading="lazy">
         </div>
     </dialog>
 
@@ -300,7 +304,7 @@
             <a href="almanach.html" class="action-btn">Ouvrir l'Almanach</a>
         </div>
         <div class="popup-action">
-            <img src="images/logo.jpg" alt="" class="popup-image">
+            <img src="images/logo.jpg" alt="" class="popup-image" loading="lazy">
         </div>
     </dialog>
 

@@ -67,6 +67,11 @@
     letter-spacing: 0.05em;
     font-size: 1.05rem;
 }
+/* Sur téléphone, les noms de groupe prenaient 40 % de la largeur.
+   Placée APRÈS la règle normale : à spécificité égale, la dernière gagne. */
+@media (max-width: 500px) {
+    #visualization .vis-labelset .vis-label { font-size: 0.8rem; letter-spacing: 0; }
+}
 #visualization .vis-foreground .vis-group {
     border-bottom-color: var(--bord);
 }

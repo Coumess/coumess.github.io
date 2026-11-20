@@ -189,56 +189,6 @@ a:hover {
     color: var(--or);
 }
 
-/* Menu hamburger : encore utilisé par almanach.html et hiddenplaces.html */
-.hamburger {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 22px;
-    cursor: pointer;
-    position: relative;
-}
-.hamburger::after { /* pont invisible pour ne pas perdre le survol */
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    height: 20px;
-}
-.hamburger span {
-    height: 3px;
-    background-color: var(--or);
-    border-radius: 2px;
-}
-.hamburger ul {
-    display: none;
-    position: absolute;
-    top: 38px;
-    left: -10px;
-    min-width: 150px;
-    margin: 0;
-    padding: 10px 0;
-    list-style: none;
-    background-color: var(--fond-2);
-    border: 1px solid var(--bord);
-    box-shadow: var(--ombre);
-}
-.hamburger:hover ul {
-    display: block;
-}
-.hamburger ul li a {
-    display: block;
-    padding: 8px 20px;
-    font-family: var(--font-titre);
-    color: var(--encre);
-    text-decoration: none;
-}
-.hamburger ul li a:hover {
-    background-color: var(--fond-3);
-}
-
 /* =====================================================================
    MISE EN PAGE : colonne d'identité + contenu
    ===================================================================== */
@@ -586,9 +536,41 @@ body:has(dialog[open]) {
 }
 
 /* =====================================================================
-   RESPONSIVE (on peaufinera à l'étape 8)
+   ACCESSIBILITÉ
+   ===================================================================== */
+/* Lien d'évitement : rangé au-dessus de l'écran, il descend quand il
+   reçoit le focus clavier. (display:none le rendrait inatteignable.) */
+.aller-contenu {
+    position: absolute;
+    top: -100px;
+    left: 10px;
+    z-index: 1000;
+    padding: 8px 16px;
+    background: var(--or);
+    color: var(--fond);
+    font-family: var(--font-titre);
+}
+.aller-contenu:focus { top: 10px; }
+
+/* Certaines personnes règlent leur système sur "réduire les animations"
+   (vertiges, migraines). Le navigateur nous le dit : on obéit. */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* =====================================================================
+   RESPONSIVE : en dessous de 800 px, tout passe en une colonne
    ===================================================================== */
 @media (max-width: 800px) {
+    /* flex-wrap: wrap = "si ça ne tient pas sur une ligne, va à la ligne".
+       Le logo garde sa ligne, les liens passent dessous, centrés. */
+    .header { flex-wrap: wrap; justify-content: center; }
+    .nav-links { flex-wrap: wrap; justify-content: center; gap: 4px 18px; margin: 0; }
+
     .main-layout { flex-direction: column; gap: 20px; margin: 20px auto; }
     .sidebar { position: static; flex: none; width: 100%; text-align: center; }
     .sidebar h1 { border-bottom: none; }
