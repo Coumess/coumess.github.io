@@ -39,6 +39,21 @@ const evenements = new DataSet(donnees.evenements); // les id sont générés to
 let seuil = 1;
 const visibles = new DataView(evenements, { filter: e => e.importance <= seuil });
 
+// Les GROUPES (lignes) suivent la même logique. Un groupe sans "importance"
+// est toujours là ; un groupe avec importance (les couronnes) n'apparaît
+// qu'au bon zoom ET si la case "Afficher les couronnes" est cochée.
+// vis-timeline cache une ligne quand son groupe a visible: false.
+const groupes = new DataSet(donnees.groupes);
+const caseCouronnes = document.getElementById('afficher-couronnes');
+
+function majGroupes() {
+    groupes.update(groupes.get().map(g => ({
+        id: g.id,
+        visible: !g.importance || (caseCouronnes.checked && g.importance <= seuil),
+    })));
+}
+caseCouronnes.addEventListener('change', majGroupes);
+
 function seuilPourEtendue(ans) {
     if (ans > 500) return 1;
     if (ans > 200) return 2;
@@ -50,13 +65,15 @@ function majNiveauDeDetail({ start, end }) {
     if (nouveau !== seuil) {   // on ne refiltre que si le palier change
         seuil = nouveau;
         visibles.refresh();
+        majGroupes();
     }
 }
 
 // ---------------------------------------------------------------------
 // 3. LA FRISE
 // ---------------------------------------------------------------------
-const timeline = new Timeline(conteneur, visibles, new DataSet(donnees.groupes), {
+majGroupes(); // état de départ : dézoomé → couronnes cachées
+const timeline = new Timeline(conteneur, visibles, groupes, {
     locale: 'fr',
     start: '1300-01-01',
     end: aujourdhui,

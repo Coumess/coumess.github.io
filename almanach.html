@@ -17,7 +17,8 @@
 <body>
     <!-- Même bannière et même barre que l'accueil (copiées : pas d'"include" en HTML pur) -->
     <header class="tranche">
-        <a href="hiddenplaces.html" id="derobade" aria-label="La dérobade"></a>
+        <a href="hiddenplaces.html" class="livre-secret" id="derobade" aria-label="La dérobade"></a>
+        <a href="lol.html" class="livre-secret" id="livre-lol" aria-label="Le grimoire de la Faille"></a>
     </header>
 
     <nav class="header">
@@ -38,6 +39,13 @@
             Molette pour zoomer, glisser pour voyager dans le temps.
             Les rois apparaissent en zoomant ; la bande verte, c'est ma vie.
         </p>
+
+        <!-- Une vraie case à cocher : clavier (Espace), lecteur d'écran et clic
+             sur le texte fonctionnent tout seuls grâce au <label> qui l'entoure. -->
+        <label class="option">
+            <input type="checkbox" id="afficher-couronnes" checked>
+            Afficher les couronnes de France et d'Angleterre
+        </label>
 
         <div id="visualization"></div>
 

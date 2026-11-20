@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Page secrète : on demande aux moteurs de recherche de ne pas l'indexer -->
+    <meta name="robots" content="noindex">
+    <title>Le Grimoire de la Faille</title>
+    <link rel="icon" type="image/jpeg" href="images/logo.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=IM+Fell+English:ital@0;1&family=Grenze+Gotisch:wght@400;600&display=swap">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/secret.css">
+</head>
+
+<body>
+    <nav class="header">
+        <a href="index.html" class="logo" aria-label="Coumess, accueil"><span class="lettrine" aria-hidden="true"></span>oumess</a>
+    </nav>
+
+    <main class="grimoire">
+        <h1>Le Grimoire de la Faille</h1>
+        <!-- Rempli par le JS : "Alexcalibur#GRAAL · EUW · mis à jour le …" -->
+        <p class="sous-titre" id="identite"></p>
+        <p class="avertissement" id="avertissement" hidden>
+            Données d'exemple : les vraies statistiques arriveront avec l'API Riot.
+        </p>
+
+        <!-- Les chiffres clés : de simples tuiles, pas besoin de graphique -->
+        <section class="tuiles" id="tuiles" aria-label="Classement actuel"></section>
+
+        <section aria-labelledby="titre-evolution">
+            <h2 id="titre-evolution" class="section-title">Évolution du rang</h2>
+            <!-- Le graphique est un SVG dessiné par le JS -->
+            <figure class="graphique" id="graphique-rang"></figure>
+        </section>
+
+        <section aria-labelledby="titre-champions">
+            <h2 id="titre-champions" class="section-title">Champions</h2>
+            <!-- Un vrai tableau : lisible par tous, et la barre de winrate
+                 dans la cellule sert de graphique. Deux en un. -->
+            <table class="stats">
+                <thead>
+                    <tr><th scope="col">Champion</th><th scope="col">Parties</th><th scope="col">Victoires</th><th scope="col">KDA</th></tr>
+                </thead>
+                <tbody id="table-champions"></tbody>
+            </table>
+        </section>
+
+        <section aria-labelledby="titre-roles">
+            <h2 id="titre-roles" class="section-title">Par rôle</h2>
+            <table class="stats">
+                <thead>
+                    <tr><th scope="col">Rôle</th><th scope="col">Parties</th><th scope="col">Victoires</th></tr>
+                </thead>
+                <tbody id="table-roles"></tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer class="page-footer">
+        <!-- Mention exigée par Riot pour tout site qui utilise ses données
+             (texte officiel, en anglais, à ne pas modifier) -->
+        <p lang="en">Alexcalibur isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties. Riot Games, and all associated properties are trademarks or registered trademarks of Riot Games, Inc.</p>
+    </footer>
+
+    <script src="js/lol.js" type="module"></script>
+</body>
+</html>

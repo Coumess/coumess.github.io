@@ -1,35 +1,44 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=IM+Fell+English:ital@0;1&family=Grenze+Gotisch:wght@400;600&display=swap">
-        <link rel="stylesheet" href="css/styles.css" type="text/css" />
-        <link rel="icon" type="image/png" href="images/logo.jpg" sizes="16x16">
-        <link rel="icon" type="image/png" href="images/logo.jpg" sizes="32x32">
-        <title> Coumess | Lieux cachés</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>La Dérobade</title>
+    <link rel="icon" type="image/jpeg" href="images/logo.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=IM+Fell+English:ital@0;1&family=Grenze+Gotisch:wght@400;600&display=swap">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/secret.css">
+</head>
 
-    <body>
-        <div class="tranche">
-            <a href="hiddenplaces.html">
-                <div id="derobade"></div>
-            </a>
-        </div>
+<body>
+    <nav class="header">
+        <a href="index.html" class="logo" aria-label="Coumess, accueil"><span class="lettrine" aria-hidden="true"></span>oumess</a>
+    </nav>
 
-        <div class="header">
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-                <ul>
-                    <li><a href="index.html">Accueil</a></li>    
-                    <li><a href="almanach.html">Almanach</a></li>
-                    <li>Projets</li>
-                </ul>
-            </div>
-            <h1><a href="index.html">COUMESS /   <span>La dérobade</span></a></h1>
-        </div>
+    <!-- <article> = un contenu autonome, qui a du sens tout seul : un récit -->
+    <article class="recit">
+        <h1>La Dérobade</h1>
+        <p class="epigraphe">« Le pain de mie, c'est fini. »</p>
 
-            <p>LE PAIN DE MIE C FINI</p>
-    </body>
+        <!-- Pour ajouter un chapitre : copie toute la <section class="chapitre">.
+             La lettrine se pose toute seule sur la 1re lettre du 1er paragraphe. -->
+        <section class="chapitre">
+            <h2>I. Le livre qui n'était pas rangé</h2>
+            <p>
+                Tu as trouvé le livre mal rangé. Ici commencera l'histoire :
+                écris-la paragraphe par paragraphe, dans des balises &lt;p&gt;.
+            </p>
+            <p>
+                Deuxième paragraphe d'exemple. Le texte est justifié avec césure
+                automatique, comme dans un vrai livre.
+            </p>
+        </section>
+
+        <p class="ornement" aria-hidden="true">❦ ❦ ❦</p>
+    </article>
+</body>
+</html>

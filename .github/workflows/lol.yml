@@ -1,0 +1,34 @@
+# =====================================================================
+# GITHUB ACTION : met à jour les stats LoL tous les jours
+# ---------------------------------------------------------------------
+# GitHub prête un ordinateur Linux, récupère ton dépôt, lance le script
+# avec la clé (stockée dans les Secrets, jamais dans le code), puis
+# commite data/lol.json s'il a changé. Le site se met à jour tout seul.
+# =====================================================================
+name: Stats LoL
+
+on:
+  schedule:
+    - cron: '0 5 * * *'   # tous les jours à 5 h UTC (minute heure jour mois jour-semaine)
+  workflow_dispatch:       # + un bouton "Run workflow" pour lancer à la main
+
+permissions:
+  contents: write          # autorise l'Action à pousser son commit
+
+jobs:
+  maj:
+    runs-on: ubuntu-latest   # Node 20+ y est déjà installé
+    steps:
+      - uses: actions/checkout@v4   # récupère le dépôt
+
+      - name: Interroger l'API Riot
+        run: node scripts/maj-lol.mjs
+        env:
+          RIOT_API_KEY: ${{ secrets.RIOT_API_KEY }}
+
+      - name: Commiter si les stats ont changé
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/lol.json
+          git diff --staged --quiet || (git commit -m "Stats LoL du $(date +%F)" && git push)

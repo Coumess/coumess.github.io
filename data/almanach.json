@@ -1,8 +1,8 @@
 {
   "groupes": [
     { "id": "histoire",    "content": "Histoire" },
-    { "id": "france",      "content": "Couronne de France" },
-    { "id": "angleterre",  "content": "Couronne d'Angleterre" },
+    { "id": "france",      "content": "Couronne de France",    "importance": 2 },
+    { "id": "angleterre",  "content": "Couronne d'Angleterre", "importance": 2 },
     { "id": "culture",     "content": "Culture" },
     { "id": "informatique","content": "Informatique" }
   ],

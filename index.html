@@ -23,7 +23,8 @@
          <header> = l'en-tête de la page. Les livres secrets sont des liens
          posés par-dessus l'image (on les refera proprement aux étapes 6-7). -->
     <header class="tranche">
-        <a href="hiddenplaces.html" id="derobade" aria-label="La dérobade"></a>
+        <a href="hiddenplaces.html" class="livre-secret" id="derobade" aria-label="La dérobade"></a>
+        <a href="lol.html" class="livre-secret" id="livre-lol" aria-label="Le grimoire de la Faille"></a>
     </header>
 
     <!-- ============ BARRE DE NAVIGATION ============
@@ -180,7 +181,20 @@
                         <span class="pub-lieu">à venir</span>
                     </li>
                     <li>
-                        <!-- À VÉRIFIER : année de ton TER -->
+                        <span class="date"><time datetime="2026">2026</time></span>
+                        <a class="pub-titre" href="https://github.com/Coumess/Data_Challenge" target="_blank">
+                            Image Processing for Infrared Sensor Defect Correction: LYNRED Data Challenge↗
+                        </a>
+                        <span class="pub-lieu">Data Challenge M1</span>
+                    </li>
+                    <li>
+                        <span class="date"><time datetime="2026">2026</time></span>
+                        <a class="pub-titre" href="https://github.com/Coumess/Lab_Project_Experiment" target="_blank">
+                            Does semantic valence induce a halo effect on facial attractiveness? A Diffusion Decision Model approach ↗
+                        </a>
+                        <span class="pub-lieu">Lab Project M1</span>
+                    </li>
+                    <li>
                         <span class="date"><time datetime="2025">2025</time></span>
                         <a class="pub-titre" href="https://github.com/Coumess/TER-MPVC-et-neurofeedbacl" target="_blank">
                             Maladie des petits vaisseaux cérébraux et neurofeedback ↗
@@ -195,7 +209,7 @@
 
     <!-- <footer> = pied de page -->
     <footer class="page-footer">
-        © 2026 Alexandre Coumes · toujours étudiant · Made With Claude
+        © 2026 Alexandre Coumes · M2 étudiant · Made With Claude
     </footer>
 
     <!-- ============ PANNEAUX DE PROJETS : la balise <dialog> ============
@@ -226,7 +240,37 @@
                 Does semantic valence induce a halo effect on facial attractiveness?
                 <small>A Diffusion Decision Model approach</small>
             </p>
-            <p>Texte à écrire : la question, la méthode (DDM), ce que vous avez trouvé.</p>
+            <p class="auteurs">Avec Angely Charles · Phelma, Grenoble INP – UGA</p>
+
+            <p>
+                Sur une appli de rencontre, on juge un visage en une fraction de seconde.
+                Une description positive peut-elle rendre ce visage plus attirant ?
+                Nous avons cherché à savoir si le sens d'un mot influence le jugement
+                d'attractivité, et surtout <em>à quelle étape</em> de la décision il agit.
+            </p>
+
+            <h4>Méthode</h4>
+            <p>
+                Les participants classaient le plus vite possible des visages
+                (Chicago Face Database) en «&nbsp;attirant&nbsp;» ou «&nbsp;pas&nbsp;attirant&nbsp;». Juste avant
+                chaque visage apparaissait un mot positif, négatif ou neutre
+                (Emotional Norms). Les temps de réaction et les choix ont été modélisés
+                avec un <strong>modèle de diffusion (DDM)</strong>, qui décompose une décision
+                en accumulation progressive d'indices jusqu'à un seuil.
+            </p>
+
+            <h4>Résultats</h4>
+            <ul>
+                <li>Interaction significative entre la valence du mot et l'étiquette du visage :
+                    un visage jugé peu attirant est classé plus vite après un mot négatif.</li>
+                <li>Quand mot et visage se contredisent (mot positif, visage peu attirant),
+                    la <strong>séparation des seuils</strong> augmente : les participants
+                    deviennent plus prudents.</li>
+                <li>Ce conflit réduit aussi le <strong>taux de dérive</strong> :
+                    l'accumulation d'indices est moins efficace.</li>
+            </ul>
+
+            <a href="https://github.com/Coumess/Lab_Project_Experiment" target="_blank" class="action-btn">Code et rapport sur GitHub ↗</a>
         </div>
     </dialog>
 
