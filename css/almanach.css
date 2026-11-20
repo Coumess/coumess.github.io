@@ -1,37 +1,160 @@
-.vis-time-axis .vis-text {
-    color: white;
-    font-weight: bold;
-    font-size: 14px;
+/* =====================================================================
+   ALMANACH : habillage de vis-timeline
+   ---------------------------------------------------------------------
+   Les couleurs viennent des variables de styles.css (:root), chargé
+   avant ce fichier : la frise suit automatiquement le thème du site.
+
+   vis-timeline injecte son propre CSS APRÈS le nôtre. À "force" égale,
+   la dernière règle gagne… donc la sienne. On préfixe nos règles par
+   #visualization : un id pèse plus lourd qu'une classe (spécificité),
+   donc nos règles gagnent, sans !important.
+   ===================================================================== */
+
+/* ---------- La page ---------- */
+.almanach {
+    max-width: 1300px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+.almanach h1 {
+    margin: 0;
+    font-family: var(--font-titre);
+    font-weight: normal;
+    font-size: 2.6rem;
+}
+.intro {
+    margin: 5px 0 25px;
+    font-style: italic;
+    color: var(--encre-pale);
 }
 
-.vis-item.vis-item.vis-selected {
-    background-color: rgba(61, 120, 80, 1);
-    border-color: black;
-}
-.vis-item.vis-point.vis-selected {
-    background-color: rgba(61, 120, 80, 1)!important;
-}
-
-#visualization {   
-    box-sizing: border-box;
-    margin: 20px;   
-    background-color: rgba(64, 51, 48, 1);  
-    font-family: 'Baskervville'; 
-    border: 5px solid lightgray;
+/* ---------- Le cadre ---------- */
+#visualization {
+    background-color: var(--fond-2);
+    font-family: var(--font-titre);
+    border: 4px double var(--bord); /* double trait = reliure de livre */
+    border-radius: var(--rayon);
+    box-shadow: var(--ombre);
 }
 
-#event-details { 
-    margin: 20px 20px;
-    padding: 10px;
-    border: 1px solid black;
-    display: none;
+/* On remplace les bordures grises de vis-timeline par nos filets dorés */
+#visualization .vis-timeline,
+#visualization .vis-panel {
+    border-color: var(--bord);
 }
-.vis-time-axis .vis-grid.vis-odd {
-    background: #51413D;
-  }
-.vis-label{
-    color: white!important;
+#visualization .vis-timeline {
+    border: none;
 }
-.vis-labelset .vis-label {
-    color: white!important;     
+
+/* ---------- Les noms de groupes (colonne de gauche) ---------- */
+#visualization .vis-labelset .vis-label {
+    color: var(--encre);
+    border-bottom-color: var(--bord);
+    font-variant: small-caps;   /* petites capitales : effet "livre ancien" */
+    letter-spacing: 0.05em;
+    font-size: 1.05rem;
+}
+#visualization .vis-foreground .vis-group {
+    border-bottom-color: var(--bord);
+}
+
+/* ---------- L'axe du temps ---------- */
+#visualization .vis-time-axis .vis-text {
+    color: var(--encre-pale);
+    font-size: 13px;
+}
+#visualization .vis-time-axis .vis-text.vis-major {
+    color: var(--or);
+}
+#visualization .vis-time-axis .vis-grid.vis-minor,
+#visualization .vis-time-axis .vis-grid.vis-major {
+    border-color: var(--bord);
+}
+#visualization .vis-time-axis .vis-grid.vis-odd {
+    background: var(--fond-3);
+}
+
+/* ---------- Les événements : étiquettes de parchemin ---------- */
+#visualization .vis-item {
+    background-color: var(--encre);
+    border-color: var(--or);
+    color: var(--fond);
+    border-radius: 2px;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+/* Le trait vertical et le point qui relient une étiquette à l'axe */
+#visualization .vis-item.vis-line,
+#visualization .vis-item.vis-dot {
+    border-color: var(--or);
+    box-shadow: none;
+}
+/* Événements "point" (ex. une naissance) : point + texte sur fond sombre */
+#visualization .vis-item.vis-point {
+    background: none;
+    box-shadow: none;
+    color: var(--encre);
+}
+
+/* Survol : seulement les étiquettes (pas les points ni la bande de fond) */
+#visualization .vis-item.vis-box:hover,
+#visualization .vis-item.vis-range:hover {
+    background-color: #fff;
+}
+
+/* Bande "Ma vie" (type background) : un voile vert sur toute la hauteur.
+   color-mix() mélange deux couleurs : 15 % de mousse + 85 % de transparent */
+#visualization .vis-item.vis-background {
+    background-color: color-mix(in srgb, var(--mousse) 15%, transparent);
+    border: none;
+    box-shadow: none;
+    color: var(--mousse);
+    font-style: italic;
+    cursor: default;
+}
+#visualization .vis-item.vis-selected,
+#visualization .vis-item.vis-selected:hover { /* sinon le survol (plus spécifique) l'emporte */
+    background-color: var(--vert-bouteille);
+    border-color: var(--mousse);
+    color: var(--encre);
+}
+#visualization .vis-item.vis-point.vis-selected {
+    background: none;
+    color: var(--mousse);
+}
+
+/* Ligne "aujourd'hui" */
+#visualization .vis-current-time {
+    background-color: var(--bordeaux);
+    width: 2px;
+}
+
+/* ---------- Panneau de détail sous la frise ---------- */
+/* Pas de display ici : l'attribut hidden (géré par le JS) s'occupe d'afficher/cacher.
+   Un display: block écrit ici écraserait hidden et le panneau ne se cacherait plus. */
+#event-details {
+    max-width: 700px;
+    margin: 25px 0;
+    padding: 20px 30px;
+    background: var(--fond-2);
+    border: 1px solid var(--bord);
+    border-left: 4px solid var(--mousse); /* marque-page */
+    border-radius: var(--rayon);
+}
+#event-details .quand {
+    margin-bottom: 10px;
+    font-style: italic;
+    color: var(--or);
+}
+#event-details h2 {
+    margin: 0 0 10px;
+    padding-bottom: 8px;
+    font-family: var(--font-titre);
+    font-weight: normal;
+    font-size: 1.7rem;
+    border-bottom: 1px solid var(--bord);
+}
+#event-details p {
+    margin: 0;
 }

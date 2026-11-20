@@ -1,45 +1,53 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="css/styles.css" type="text/css" />
-        <link rel="stylesheet" href="css/almanach.css" type="text/css" />
-        <link rel="icon" type="image/png" href="images/logo.jpg" sizes="16x16">
-        <link rel="icon" type="image/png" href="images/logo.jpg" sizes="32x32">
-        <title> Coumess | Almanach</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="L'Almanach : une frise chronologique interactive, des rois de France et d'Angleterre aux curiosités de l'histoire.">
+    <title>L'Almanach · Alexandre Coumes</title>
+    <link rel="icon" type="image/jpeg" href="images/logo.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=IM+Fell+English:ital@0;1&family=Grenze+Gotisch:wght@400;600&display=swap">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/almanach.css">
+</head>
 
-    <body>
-        <div class="tranche">
-            <a href="hiddenplaces.html">
-                <div id="dérobade"></div>
-            </a>
-        </div>
+<body>
+    <!-- Même bannière et même barre que l'accueil (copiées : pas d'"include" en HTML pur) -->
+    <header class="tranche">
+        <a href="hiddenplaces.html" id="derobade" aria-label="La dérobade"></a>
+    </header>
 
-        <div class="header">
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-                <ul>
-                    <li><a href="index.html">Accueil</a></li>    
-                    <li><a href="almanach.html">Almanach</a></li>
-                    <li>Projets</li>
-                </ul>
-            </div>
-            <h1><a href="index.html">COUMESS /   <span>Almanach</span></a></h1>
-        </div>
-        
+    <nav class="header">
+        <a href="index.html" class="logo" aria-label="Coumess, accueil"><span class="lettrine" aria-hidden="true"></span>oumess</a>
+        <ul class="nav-links">
+            <!-- index.html#projets : aller sur l'accueil PUIS défiler jusqu'à #projets -->
+            <li><a href="index.html#projets">Projets</a></li>
+            <li><a href="index.html#chroniques">Chroniques</a></li>
+            <li><a href="index.html#publications">Publications</a></li>
+            <!-- aria-current="page" : "tu es ici", annoncé aux lecteurs d'écran et stylé en or -->
+            <li><a href="almanach.html" aria-current="page">Almanach</a></li>
+        </ul>
+    </nav>
 
-        
+    <main class="almanach">
+        <h1>L'Almanach</h1>
+        <p class="intro">
+            Molette pour zoomer, glisser pour voyager dans le temps.
+            Les rois apparaissent en zoomant ; la bande verte, c'est ma vie.
+        </p>
+
         <div id="visualization"></div>
-        <div id="event-details"></div>
-        
-        
 
-      </body>
+        <!-- hidden : caché tant qu'aucun événement n'est sélectionné.
+             aria-live="polite" : le lecteur d'écran lit le contenu quand il change. -->
+        <section id="event-details" aria-live="polite" hidden></section>
+    </main>
 
-      <script src="js/almanach.js" type="module"></script>
-
+    <!-- type="module" : permet import et await. Un module attend que le HTML soit lu
+         avant de s'exécuter, donc plus besoin de DOMContentLoaded. -->
+    <script src="js/almanach.js" type="module"></script>
+</body>
 </html>

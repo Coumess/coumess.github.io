@@ -1,181 +1,265 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr"> <!-- lang : prononciation correcte pour les lecteurs d'écran + aide Google -->
 
 <head>
     <meta charset="UTF-8">
+    <!-- Sans cette ligne, un téléphone affiche la page "en version PC" dézoomée -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styles.css" type="text/css" />
-    <link rel="icon" type="image/png" href="images/logo.jpg" sizes="16x16">
-    <link rel="icon" type="image/png" href="images/logo.jpg" sizes="32x32">
-    <title>Coumess | Accueil</title>
+    <!-- Le texte que Google affiche sous ton lien dans les résultats -->
+    <meta name="description" content="Alexandre Coumes, étudiant en interfaces cerveau-machine et géométrie riemannienne. Projets, publications, CV.">
+    <title>Alexandre Coumes · BCI &amp; géométrie riemannienne</title>
+    <link rel="icon" type="image/jpeg" href="images/logo.jpg">
+    <!-- Polices Google Fonts. "preconnect" ouvre la connexion au serveur de polices
+         en avance ; display=swap affiche le texte tout de suite avec une police de
+         secours, puis échange quand la vraie est arrivée (pas de page blanche). -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=IM+Fell+English:ital@0;1&family=Grenze+Gotisch:wght@400;600&display=swap">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
-    <div class="tranche">
-        <a href="hiddenplaces.html">
-            <div id="dérobade"></div>
-        </a>
-    </div>
+    <!-- ============ BANNIÈRE (l'étagère) ============
+         <header> = l'en-tête de la page. Les livres secrets sont des liens
+         posés par-dessus l'image (on les refera proprement aux étapes 6-7). -->
+    <header class="tranche">
+        <a href="hiddenplaces.html" id="derobade" aria-label="La dérobade"></a>
+    </header>
 
-    <div class="header">
-        <div class="hamburger">
-            <span></span><span></span><span></span>
-            <ul>
-                <li><a href="index.html">Accueil</a></li>    
-                <li><a href="almanach.html">Almanach</a></li>
-            </ul>
-        </div>
-        <h1><a href="index.html">COUMESS / <span>Accueil</span></a></h1>
-    </div>
-    
+    <!-- ============ BARRE DE NAVIGATION ============
+         <nav> = "ceci est un menu". Les liens #projets / #publications
+         font défiler jusqu'à l'élément qui porte cet id : pas besoin de JS. -->
+    <nav class="header">
+        <!-- La lettrine est une image décorative : aria-hidden la cache aux lecteurs
+             d'écran, et aria-label leur donne le vrai nom du lien. -->
+        <a href="#" class="logo" aria-label="Coumess, retour en haut"><span class="lettrine" aria-hidden="true"></span>oumess</a>
+        <ul class="nav-links">
+            <li><a href="#projets">Projets</a></li>
+            <li><a href="#chroniques">Chroniques</a></li>
+            <li><a href="#publications">Publications</a></li>
+            <li><a href="almanach.html">Almanach</a></li>
+        </ul>
+    </nav>
+
+    <!-- ============ CONTENU PRINCIPAL ============
+         <main> = le cœur unique de la page (un seul par page). -->
     <main class="main-layout">
-        
+
+        <!-- <aside> = contenu "à côté" du sujet principal : ici, la fiche d'identité -->
         <aside class="sidebar">
-            <div class="sidebar-header">
-                <h2>Alexandre<br>Coumes</h2>
-            </div>
-            
-            <nav class="sidebar-nav">
-                <ul>
-                    <li>
-                        <span data-target="whoContent" data-title="Qui suis-je ?" class="clickable-text clickableDiv">
-                            Who am I ?
-                        </span>
-                    </li>
-                    <li><a href="https://github.com/Coumess" target="_blank">Github ↗</a></li>
-                    <li><a href="https://www.linkedin.com/in/alexandre-coumes/" target="_blank">Linkedin ↗</a></li>
-                    <li><a href="files/cv.pdf" target="_blank"> Resume(CV) ↗</a></li>
-                </ul>
-            </nav>
-            
-            <footer class="sidebar-footer">
-                © 2026 Alexandre Coumes<br> Still a student
-            </footer>
+            <!-- Un seul <h1> par page : le titre le plus important = ton nom -->
+            <h1>Alexandre<br>Coumes</h1>
+
+            <p class="bio">
+                Étudiant passionné de neurosciences. En stage sur les
+                <strong>interfaces cerveau-machine</strong> et la
+                <strong>géométrie riemannienne</strong>, en route vers une thèse.
+            </p>
+
+            <!-- Une liste de liens = <ul>. Le lecteur d'écran annonce "liste, 4 éléments". -->
+            <ul class="sidebar-nav">
+                <li><a href="files/cv.pdf" target="_blank">CV ↗</a></li>
+                <li><a href="https://github.com/Coumess" target="_blank">GitHub ↗</a></li>
+                <li><a href="https://www.linkedin.com/in/alexandre-coumes/" target="_blank">LinkedIn ↗</a></li>
+                <!-- mailto: ouvre directement le logiciel de mail du visiteur -->
+                <li><a href="mailto:coumes.alexandre@proton.me">Email ✉</a></li>
+            </ul>
         </aside>
 
-        <section class="content-center">
-            <div class="projects-grid" id="projets">
-                
-                <div data-target="terContent" data-title="TER L3" class="project-card clickableDiv">
-                    <img src="images/bigbrain.jpg" alt="TER L3" class="card-image">
-                    <div class="card-overlay">
-                        <p class="card-title">TER de L3</p>
-                        <p style="font-size:0.9rem; margin:5px 0 0 0; color:#ddd;">Recherche académique</p>
-                    </div>
+        <div class="content-center">
+
+            <!-- <section> = un bloc thématique avec son propre titre.
+                 aria-labelledby relie la section à son titre (accessibilité). -->
+            <section id="projets" aria-labelledby="titre-projets">
+                <h2 id="titre-projets" class="section-title">Projets</h2>
+
+                <!-- CARTES : de vrais <button>.
+                     Un bouton est atteignable au clavier (Tab), s'active avec Entrée
+                     ou Espace, et le lecteur d'écran l'annonce "bouton".
+                     data-dialog = l'id du panneau à ouvrir (lu par js/main.js).
+                     Dans un bouton on n'a droit qu'à du contenu "en ligne",
+                     d'où des <span> au lieu de <p> et <div>. -->
+                <div class="projects-grid">
+
+                    <button class="project-card" data-dialog="dlg-stage">
+                        <img src="images/eeg-10-20.svg" alt="" class="card-image">
+                        <span class="card-overlay">
+                            <span class="card-title">Stage BCI</span>
+                            <span class="card-subtitle">Géométrie riemannienne</span>
+                        </span>
+                    </button>
+
+                    <button class="project-card" data-dialog="dlg-labm1">
+                        <!-- Image provisoire : remplace-la par la tienne -->
+                        <img src="images/goblin_tinder.jpg" alt="" class="card-image">
+                        <span class="card-overlay">
+                            <span class="card-title">Lab Project M1</span>
+                            <span class="card-subtitle">Effet de halo &amp; modèle de diffusion</span>
+                        </span>
+                    </button>
+
+                    <button class="project-card" data-dialog="dlg-ter">
+                        <img src="images/bigbrain.jpg" alt="" class="card-image">
+                        <span class="card-overlay">
+                            <span class="card-title">TER de L3</span>
+                            <span class="card-subtitle">MPVC &amp; neurofeedback</span>
+                        </span>
+                    </button>
+
+                    <button class="project-card" data-dialog="dlg-almanach">
+                        <img src="images/almanachh.jpg" alt="" class="card-image">
+                        <span class="card-overlay">
+                            <span class="card-title">L'Almanach</span>
+                            <span class="card-subtitle">Frise chronologique interactive</span>
+                        </span>
+                    </button>
+
                 </div>
+            </section>
 
-                <div data-target="almanachContent" data-title="L'Almanach" class="project-card clickableDiv">
-                    <img src="images/almanachh.jpg" alt="Almanach" class="card-image">
-                    <div class="card-overlay">
-                        <p class="card-title">L'Almanach</p>
-                        <p style="font-size:0.9rem; margin:5px 0 0 0; color:#ddd;">Chronologie Interactive</p>
-                    </div>
-                </div>
+            <!-- ============ CHRONIQUES : ton parcours ============
+                 Pour ajouter un événement : copie un <li>, place-le à sa date
+                 (du plus récent en haut au plus ancien en bas).
+                 .date      = la colonne date. Formats de datetime :
+                              "2026" (année), "2026-03" (mois), "2026-03-15" (jour).
+                              Une période = deux <time> séparés par un tiret –
+                 .pub-lieu  = le TYPE de la ligne : Stage, Master, Licence, MOOC… -->
+            <section id="chroniques" aria-labelledby="titre-chroniques">
+                <h2 id="titre-chroniques" class="section-title">Chroniques</h2>
 
-            </div>
-        </section>
+                <ol class="publications">
+                    <li>
+                        <span class="date">À venir</span>
+                        <span class="pub-titre">Master Cognition naturelle et artificielle</span>
+                        <span class="pub-lieu">Master</span>
+                    </li>
+                    <!-- À COMPLÉTER : les mois de tes 2 stages BCI.
+                         Exemple : <time datetime="2026-02">févr.</time>–<time datetime="2026-06">juin 2026</time> -->
+                    <li>
+                        <span class="date"><time datetime="2026">2026</time></span>
+                        <span class="pub-titre">Stage : interfaces cerveau-machine &amp; géométrie riemannienne</span>
+                        <span class="pub-lieu">Stage</span>
+                    </li>
+                    <li>
+                        <span class="date"><time datetime="2026-10">oct. 2026</time></span>
+                        <span class="pub-titre">MOOC Machine learning in Python with scikit-learn (Inria)</span>
+                        <span class="pub-lieu">MOOC</span>
+                    </li>
+                    <li>
+                        <span class="date"><time datetime="2026-06">juin</time>–<time datetime="2026-07">juilelt 2026</time></span>
+                        <span class="pub-titre">Stage : BCI, géométrie riemannienne &amp; fonctions d'activation</span>
+                        <span class="pub-lieu">Stage</span>
+                    </li>
+                    <li>
+                        <span class="date"><time datetime="2022">2022</time>–<time datetime="2025">2025</time></span>
+                        <span class="pub-titre">Licence MIASHS (maths et informatique appliquées aux sciences cognitives)</span>
+                        <span class="pub-lieu">Licence</span>
+                    </li>
+                    <li>
+                        <span class="date"><time datetime="2020">2020</time>–<time datetime="2023">2023</time></span>
+                        <span class="pub-titre">Licence Psychologie : neuropsychologie cognitive</span>
+                        <span class="pub-lieu">Licence</span>
+                    </li>
+                    <li>
+                        <span class="date"><time datetime="2023-03">mars 2023</time></span>
+                        <span class="pub-titre">Stage : neuropsychologie en psychiatrie dans un centre de réhabilitation sociale</span>
+                        <span class="pub-lieu">Stage</span>
+                    </li>
+                </ol>
+            </section>
 
+            <section id="publications" aria-labelledby="titre-publications">
+                <h2 id="titre-publications" class="section-title">Publications &amp; rapports</h2>
+
+                <!-- <ol> = liste ORDONNÉE (l'ordre compte : du plus récent au plus ancien).
+                     <time datetime="..."> donne la date en format lisible par les machines. -->
+                <ol class="publications">
+                    <li>
+                        <span class="date"><time datetime="2026">2026</time></span>
+                        <span class="pub-titre">Rapport de stage : BCI &amp; géométrie riemannienne</span>
+                        <span class="pub-lieu">à venir</span>
+                    </li>
+                    <li>
+                        <!-- À VÉRIFIER : année de ton TER -->
+                        <span class="date"><time datetime="2025">2025</time></span>
+                        <a class="pub-titre" href="https://github.com/Coumess/TER-MPVC-et-neurofeedbacl" target="_blank">
+                            Maladie des petits vaisseaux cérébraux et neurofeedback ↗
+                        </a>
+                        <span class="pub-lieu">TER de L3</span>
+                    </li>
+                </ol>
+            </section>
+
+        </div>
     </main>
 
-    <div class="overContent" id="whoContent">
-        <div class="popup-box">
-            <div class="close-btn" onclick="hideOverlay('whoContent')">×</div>
-            <div class="popup-info">
-                <h3>About me</h3>
-                <p>
-                    Hello, I am Alexandre Coumes. I am passionate about neuroscience and developing original projects.
-                    <br><br>
-                    I am French-Swiss and I love traveling to discover new places.
-                    <br><br>
-                    Feel free to contact me by email: coumes.alexandre@proton.me
-                </p>
-            </div>
-            <div class="popup-action">
-                <img src="images/punpun.jpeg" style="max-width: 70%; border-radius: 50%; box-shadow: 0 5px 15px rgba(0,0,0,0.3); border: 4px solid rgba(64, 51, 48, 1);">
-            </div>
+    <!-- <footer> = pied de page -->
+    <footer class="page-footer">
+        © 2026 Alexandre Coumes · toujours étudiant · Made With Claude
+    </footer>
+
+    <!-- ============ PANNEAUX DE PROJETS : la balise <dialog> ============
+         Le navigateur gère tout seul, sans JS :
+           - le fond assombri (::backdrop) et le blocage du reste de la page,
+           - la touche Échap pour fermer,
+           - le focus clavier piégé dans le panneau, puis rendu à la carte.
+         <form method="dialog"> : un bouton dans ce formulaire FERME le dialog. -->
+
+    <dialog class="panel" id="dlg-stage" aria-labelledby="dlg-stage-titre">
+        <form method="dialog"><button class="close-btn" aria-label="Fermer">×</button></form>
+        <div class="popup-info">
+            <h3 id="dlg-stage-titre">Stage : BCI &amp; géométrie riemannienne et imagerie motrice</h3>
+            <p>Texte à écrire : le sujet, le labo, ce que tu fais, ce que tu apprends.</p>
         </div>
-    </div>
-
-    <div class="overContent" id="terContent">
-        <div class="popup-box">
-            <div class="close-btn" onclick="hideOverlay('terContent')">×</div>
-            <div class="popup-info">
-                <h3>TER de L3</h3>
-                <p>
-                    Mon Travail d'Étude et de Recherche (TER). Il s'agit d'une exploration académique détaillée portant sur la maladie des petits vaisseaux cérébraux (MPVC) et le neurofeedback.
-                    <br><br>
-                    Ce projet m'a permis de développer.
-                </p>
-                <a href="https://github.com/Coumess/TER-MPVC-et-neurofeedbacl" target="_blank" class="action-btn">Consulter les travaux</a>
-            </div>
-            <div class="popup-action">
-                <img src="images/punpun.jpeg" alt="Illustration TER" style="max-width: 90%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); border: 2px solid rgba(64, 51, 48, 1);">
-            </div>
+        <div class="popup-action">
+            <!-- Ici l'image apporte une info (le placement des électrodes) : alt décrit -->
+            <img src="images/eeg-10-20.svg" alt="Schéma du système 10-20 de placement des électrodes EEG" class="popup-image">
         </div>
-    </div>
+    </dialog>
 
-    <div class="overContent" id="almanachContent">
-        <div class="popup-box">
-            <div class="close-btn" onclick="hideOverlay('almanachContent')">×</div>
-            <div class="popup-info">
-                <h3>L'Almanach</h3>
-                <p>
-                    Projet chronologique interactif utilisant la bibliothèque vis-timeline pour naviguer dans le temps de manière visuelle et intuitive.
-                    <br><br>
-                    Juste pour comprendre relativiser le temps avec des événements historiques ou étranges.
-                </p>
-                <a href="almanach.html" class="action-btn">Ouvrir l'Almanach</a>
-            </div>
-            <div class="popup-action">
-                <img src="images/logo.jpg" style="max-width: 90%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); border: 2px solid rgba(64, 51, 48, 1);">
-            </div>
+    <dialog class="panel" id="dlg-labm1" aria-labelledby="dlg-labm1-titre">
+        <form method="dialog"><button class="close-btn" aria-label="Fermer">×</button></form>
+        <div class="popup-info">
+            <h3 id="dlg-labm1-titre">Lab Project M1 &amp; Halo effect, semantic valence and DDM</h3>
+            <!-- lang="en" : le lecteur d'écran prononce cette phrase à l'anglaise -->
+            <p lang="en" class="titre-article">
+                Does semantic valence induce a halo effect on facial attractiveness?
+                <small>A Diffusion Decision Model approach</small>
+            </p>
+            <p>Texte à écrire : la question, la méthode (DDM), ce que vous avez trouvé.</p>
         </div>
-    </div>
+    </dialog>
 
-    <script>
-        const originalTitle = document.title;
+    <dialog class="panel" id="dlg-ter" aria-labelledby="dlg-ter-titre">
+        <form method="dialog"><button class="close-btn" aria-label="Fermer">×</button></form>
+        <div class="popup-info">
+            <h3 id="dlg-ter-titre">TER de L3</h3>
+            <p>
+                Mon Travail d'Étude et de Recherche (TER) : une exploration académique de la
+                maladie des petits vaisseaux cérébraux (MPVC) et du neurofeedback.
+            </p>
+            <a href="https://github.com/Coumess/TER-MPVC-et-neurofeedbacl" target="_blank" class="action-btn">Consulter les travaux</a>
+        </div>
+        <div class="popup-action">
+            <img src="images/bigbrain.jpg" alt="" class="popup-image">
+        </div>
+    </dialog>
 
-        function hideOverlay(id) {
-            const el = document.getElementById(id);
-            if(!el) return;
-            el.classList.remove('visible'); 
-            setTimeout(() => {
-                el.style.display = 'none'; 
-                document.title = originalTitle; 
-            }, 300);
-        }
+    <dialog class="panel" id="dlg-almanach" aria-labelledby="dlg-almanach-titre">
+        <form method="dialog"><button class="close-btn" aria-label="Fermer">×</button></form>
+        <div class="popup-info">
+            <h3 id="dlg-almanach-titre">L'Almanach</h3>
+            <p>
+                Une frise chronologique interactive pour relativiser le temps :
+                des rois, des guerres et des curiosités, du Moyen Âge à aujourd'hui.
+            </p>
+            <a href="almanach.html" class="action-btn">Ouvrir l'Almanach</a>
+        </div>
+        <div class="popup-action">
+            <img src="images/logo.jpg" alt="" class="popup-image">
+        </div>
+    </dialog>
 
-        function showOverlay(id, clickedElement) {
-            const el = document.getElementById(id);
-            if(!el) return;
-            
-            if (clickedElement) {
-                const title = clickedElement.getAttribute('data-title');
-                if (title && title !== 'null') {
-                    document.title = title;
-                }
-            }
-
-            el.style.display = 'flex';
-            requestAnimationFrame(() => el.classList.add('visible'));
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            
-            document.querySelectorAll('.clickableDiv').forEach(div => {
-                div.addEventListener('click', function() {
-                    const targetId = this.getAttribute('data-target');
-                    showOverlay(targetId, this);
-                });
-            });
-
-            document.querySelectorAll('.overContent').forEach(over => {
-                over.addEventListener('click', function(e) {
-                    if(e.target === this) hideOverlay(this.id);
-                });
-            });
-            
-        });
-    </script>
+    <script src="js/main.js"></script>
 </body>
 </html>

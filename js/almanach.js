@@ -1,101 +1,105 @@
-// vis-timeline chargé depuis un CDN (jsDelivr) : plus besoin de npm ni de node_modules.
-// Version figée (@7.7.3) pour que le site ne casse pas si la lib sort une nouvelle version.
-// Le build "standalone" contient Timeline + DataSet + le CSS de la frise, tout en un.
-import { Timeline, DataSet } from 'https://cdn.jsdelivr.net/npm/vis-timeline@7.7.3/standalone/esm/vis-timeline-graph2d.min.js';
+// vis-timeline chargé depuis un CDN, version figée (@7.7.3).
+// Le build "standalone" contient Timeline, DataSet, DataView et le CSS de la frise.
+import { Timeline, DataSet, DataView } from 'https://cdn.jsdelivr.net/npm/vis-timeline@7.7.3/standalone/esm/vis-timeline-graph2d.min.js';
 
+const conteneur = document.getElementById('visualization');
+const details = document.getElementById('event-details');
+const UN_AN = 365.25 * 24 * 60 * 60 * 1000; // en millisecondes : vis-timeline compte en ms
 
+// ---------------------------------------------------------------------
+// 1. CHARGER LES DONNÉES
+// Les événements vivent dans data/almanach.json : pour ajouter un roi,
+// on touche au JSON, jamais au code.
+// "await" attend la réponse du serveur ; c'est permis ici au premier
+// niveau parce que le script est un module (type="module").
+// ---------------------------------------------------------------------
+let donnees;
+try {
+    const reponse = await fetch('data/almanach.json');
+    donnees = await reponse.json();
+} catch (erreur) {
+    // Cas classique : page ouverte en double-clic (file://) au lieu d'un serveur local
+    conteneur.textContent = "Impossible de charger data/almanach.json. Ouvre la page via un serveur local (http://localhost…).";
+    throw erreur;
+}
 
-document.addEventListener("DOMContentLoaded", function () {
-    var container = document.getElementById('visualization');
+const aujourdhui = new Date();
+for (const e of donnees.evenements) {
+    if (e.end === "aujourd'hui") e.end = aujourdhui; // pour la bande "Ma vie"
+}
+const evenements = new DataSet(donnees.evenements); // les id sont générés tout seuls
 
-    if (!container) {
-        console.error("Le conteneur de la timeline n'existe pas !");
+// ---------------------------------------------------------------------
+// 2. NIVEAU DE DÉTAIL SELON LE ZOOM
+// Chaque événement a une "importance" : 1 = toujours visible,
+// 2 = quand on voit moins de 500 ans, 3 = moins de 200 ans.
+// Un DataView est une "vue filtrée" du DataSet : la frise n'affiche que
+// ce qui passe le filtre, et refresh() relance le filtre.
+// ---------------------------------------------------------------------
+let seuil = 1;
+const visibles = new DataView(evenements, { filter: e => e.importance <= seuil });
+
+function seuilPourEtendue(ans) {
+    if (ans > 500) return 1;
+    if (ans > 200) return 2;
+    return 3;
+}
+
+function majNiveauDeDetail({ start, end }) {
+    const nouveau = seuilPourEtendue((end - start) / UN_AN);
+    if (nouveau !== seuil) {   // on ne refiltre que si le palier change
+        seuil = nouveau;
+        visibles.refresh();
+    }
+}
+
+// ---------------------------------------------------------------------
+// 3. LA FRISE
+// ---------------------------------------------------------------------
+const timeline = new Timeline(conteneur, visibles, new DataSet(donnees.groupes), {
+    locale: 'fr',
+    start: '1300-01-01',
+    end: aujourdhui,
+    min: new Date(-600, 0, 1),
+    max: new Date(2050, 0, 1),
+    zoomMin: 7 * 24 * 60 * 60 * 1000, // zoom max : une semaine
+    zoomMax: 1000 * UN_AN,            // dézoom max : mille ans
+    showCurrentTime: true,
+    stack: true,
+    // Marge horizontale 0 : deux règnes qui se suivent restent sur la même ligne
+    // (par défaut 10px d'écart obligatoire → le second passait à la ligne)
+    margin: { item: { horizontal: 0 } },
+    editable: false,
+});
+
+majNiveauDeDetail(timeline.getWindow());          // palier de départ
+timeline.on('rangechange', majNiveauDeDetail);    // puis à chaque zoom / glissement
+
+// ---------------------------------------------------------------------
+// 4. PANNEAU DE DÉTAIL au clic
+// ---------------------------------------------------------------------
+const formatDate = d => new Date(d).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+
+timeline.on('select', ({ items }) => {
+    const e = items.length ? evenements.get(items[0]) : null;
+    if (!e || !e.description) {
+        details.hidden = true;
         return;
     }
 
-    var items = new DataSet([
-        { 
-            id: 1, 
-            content: 'Naissance de Coumess', 
-            start: '2001-02-08',
-            description: "Naissance d'une personne simple.",
-            type: "point",
-            group:0,
-        },
-        { 
-            id: 2, 
-            content: 'Guerre de Cent Ans', 
-            start: '1337-05-24', 
-            end: '1453-10-09',
-            description: "Série de conflits opposant le royaume d'Angleterre et le royaume de France. Malgré son nom, elle a duré 116 ans.",
-            group: 0,
-        },
-        { 
-            id: 3, 
-            content: 'Test de Turing', 
-            start: '1950-10',
-            description: "Test proposé par Alan Turing pour évaluer la capacité d'une machine à imiter une conversation humaine.",
-            group: 2,
-        },
-        { 
-            id: 4, 
-            content: "Adoption du drapeau Népalais", 
-            start: '1962-12-16',
-            description: "Adoption officielle du seul drapeau national non rectangulaire au monde.",
-            group: 1,
-        },
-        {
-            id: 5, 
-            content: "Fonction d'Ackermann", 
-            start: '1928-12',
-            description: "Publication de la fonction récursive non primitive. La fonction d’Ackermann est une fonction récursive extrême, qui croît plus rapidement que n'importe quelle fonction récursive primitive. Elle est utilisée en informatique pour tester les limites des systèmes de calcul et comme un exemple classique de fonction récursive difficile à gérer.",
-            group: 2,
-        }
-    ]);
+    let quand = formatDate(e.start);
+    if (e.end) {
+        const duree = Math.round((new Date(e.end) - new Date(e.start)) / UN_AN);
+        quand += ` – ${formatDate(e.end)} (${duree} an${duree > 1 ? 's' : ''})`;
+    }
 
-    var today = new Date().toISOString().split("T")[0];
-    var groups = new DataSet([
-        {id: 0, content: "Histoire"},
-        {id: 1, content: "Culture"},
-        {id: 2, content: "Informatique"}
-    ]);
-
-    var options = { 
-        showCurrentTime: true,
-        stack: true,
-        zoomable: true,
-        editable: false,
-        locale: 'fr',
-        start: '1300-01-01',
-        end: today,
-        min: new Date(-600, 0, 1),
-        max: new Date(2050, 0, 1),
-        zoomMin: 1000 * 60 * 60 * 24 * 7, // Zoom une semaine
-        zoomMax: 1000 * 60 * 60 * 24 * 365 * 1000, // Dezoom 1000 ans
-        mousewheel: true,
-        loadingScreenTemplate: function () {
-            return "<h1>Loading...</h1>";
-          },
-    };
-
-
-    var timeline = new Timeline(container, items, groups, options);
-
-    // Ajouter l'événement de clic
-    timeline.on('select', function(properties) {
-        const eventDetails = document.getElementById('event-details');
-        if (properties.items.length > 0) {
-            const selectedItem = items.get(properties.items[0]);
-            if (selectedItem.description) {
-                eventDetails.innerHTML = `
-                    <h3>${selectedItem.content}</h3>
-                    ${selectedItem.image ? `<img src="${selectedItem.image}" alt="${selectedItem.content}" style="max-width: 300px; margin: 10px 0;">` : ''}
-                    <p>${selectedItem.description}</p>
-                `;
-                eventDetails.style.display = 'block';
-            }
-        } else {
-            eventDetails.style.display = 'none';
-        }
-    });
+    // innerHTML accepte du HTML (ex. <em>) dans les descriptions.
+    // Acceptable ici car le JSON est écrit par toi ; ne JAMAIS faire ça avec
+    // du texte venant des visiteurs (risque d'injection de code).
+    details.innerHTML = `
+        <h2>${e.content}</h2>
+        <p class="quand">${quand}</p>
+        <p>${e.description}</p>
+    `;
+    details.hidden = false;
 });

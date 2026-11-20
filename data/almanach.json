@@ -1,0 +1,52 @@
+{
+  "groupes": [
+    { "id": "histoire",    "content": "Histoire" },
+    { "id": "france",      "content": "Couronne de France" },
+    { "id": "angleterre",  "content": "Couronne d'Angleterre" },
+    { "id": "culture",     "content": "Culture" },
+    { "id": "informatique","content": "Informatique" }
+  ],
+  "evenements": [
+    { "content": "Ma vie", "start": "2001-02-08", "end": "aujourd'hui", "type": "background", "importance": 1 },
+    { "content": "Naissance de Coumess", "start": "2001-02-08", "type": "point", "group": "histoire", "importance": 1,
+      "description": "Naissance d'une personne simple." },
+    { "content": "Guerre de Cent Ans", "start": "1337-05-24", "end": "1453-10-19", "group": "histoire", "importance": 1,
+      "description": "Série de conflits opposant le royaume d'Angleterre et le royaume de France. Malgré son nom, elle a duré 116 ans." },
+    { "content": "Test de Turing", "start": "1950-10", "group": "informatique", "importance": 1,
+      "description": "Test proposé par Alan Turing pour évaluer la capacité d'une machine à imiter une conversation humaine." },
+    { "content": "Fonction d'Ackermann", "start": "1928-12", "group": "informatique", "importance": 1,
+      "description": "Publication de la fonction récursive non primitive. Elle croît plus vite que n'importe quelle fonction récursive primitive : un exemple classique des limites du calcul." },
+    { "content": "Adoption du drapeau népalais", "start": "1962-12-16", "group": "culture", "importance": 1,
+      "description": "Adoption officielle du seul drapeau national non rectangulaire au monde." },
+
+    { "content": "Philippe VI", "start": "1328-04-01", "end": "1350-08-22", "group": "france", "importance": 3, "description": "Premier roi de la dynastie des Valois." },
+    { "content": "Jean II le Bon", "start": "1350-08-22", "end": "1364-04-08", "group": "france", "importance": 3, "description": "Capturé à la bataille de Poitiers (1356)." },
+    { "content": "Charles V", "start": "1364-04-08", "end": "1380-09-16", "group": "france", "importance": 3, "description": "Dit « le Sage »." },
+    { "content": "Charles VI", "start": "1380-09-16", "end": "1422-10-21", "group": "france", "importance": 3, "description": "Dit « le Fou »." },
+    { "content": "Charles VII", "start": "1422-10-21", "end": "1461-07-22", "group": "france", "importance": 3, "description": "Sacré à Reims grâce à Jeanne d'Arc (1429)." },
+    { "content": "Louis XI", "start": "1461-07-22", "end": "1483-08-30", "group": "france", "importance": 3, "description": "Surnommé « l'universelle aragne »." },
+    { "content": "Charles VIII", "start": "1483-08-30", "end": "1498-04-07", "group": "france", "importance": 3, "description": "Lance les guerres d'Italie." },
+    { "content": "Louis XII", "start": "1498-04-07", "end": "1515-01-01", "group": "france", "importance": 3, "description": "Dit « le Père du peuple »." },
+    { "content": "François Ier", "start": "1515-01-01", "end": "1547-03-31", "group": "france", "importance": 2, "description": "Roi de la Renaissance, mécène de Léonard de Vinci." },
+    { "content": "Henri II", "start": "1547-03-31", "end": "1559-07-10", "group": "france", "importance": 3, "description": "Mort des suites d'un tournoi." },
+    { "content": "François II", "start": "1559-07-10", "end": "1560-12-05", "group": "france", "importance": 3, "description": "Règne d'un an et demi." },
+    { "content": "Charles IX", "start": "1560-12-05", "end": "1574-05-30", "group": "france", "importance": 3, "description": "Roi lors du massacre de la Saint-Barthélemy (1572)." },
+    { "content": "Henri III", "start": "1574-05-30", "end": "1589-08-02", "group": "france", "importance": 3, "description": "Dernier roi Valois." },
+    { "content": "Henri IV", "start": "1589-08-02", "end": "1610-05-14", "group": "france", "importance": 2, "description": "Premier Bourbon, auteur de l'édit de Nantes (1598)." },
+    { "content": "Louis XIII", "start": "1610-05-14", "end": "1643-05-14", "group": "france", "importance": 3, "description": "Gouverne avec le cardinal de Richelieu." },
+    { "content": "Louis XIV", "start": "1643-05-14", "end": "1715-09-01", "group": "france", "importance": 2, "description": "Le Roi-Soleil : le plus long règne de l'histoire de France." },
+    { "content": "Louis XV", "start": "1715-09-01", "end": "1774-05-10", "group": "france", "importance": 3, "description": "Dit « le Bien-Aimé »." },
+    { "content": "Louis XVI", "start": "1774-05-10", "end": "1792-09-21", "group": "france", "importance": 2, "description": "Dernier roi de l'Ancien Régime, renversé par la Révolution." },
+    { "content": "Napoléon Ier", "start": "1804-05-18", "end": "1814-04-06", "group": "france", "importance": 2, "description": "Empereur des Français (sans compter les Cent-Jours de 1815)." },
+    { "content": "Charles X", "start": "1824-09-16", "end": "1830-08-02", "group": "france", "importance": 3, "description": "Renversé par les Trois Glorieuses." },
+    { "content": "Louis-Philippe Ier", "start": "1830-08-09", "end": "1848-02-24", "group": "france", "importance": 3, "description": "Dernier roi des Français." },
+    { "content": "Napoléon III", "start": "1852-12-02", "end": "1870-09-04", "group": "france", "importance": 3, "description": "Dernier monarque de France." },
+
+    { "content": "Édouard III", "start": "1327-01-25", "end": "1377-06-21", "group": "angleterre", "importance": 2, "description": "Revendique la couronne de France : début de la guerre de Cent Ans." },
+    { "content": "Henri V", "start": "1413-03-21", "end": "1422-08-31", "group": "angleterre", "importance": 3, "description": "Vainqueur d'Azincourt (1415)." },
+    { "content": "Henri VIII", "start": "1509-04-22", "end": "1547-01-28", "group": "angleterre", "importance": 2, "description": "Six épouses et la rupture avec Rome." },
+    { "content": "Élisabeth Ire", "start": "1558-11-17", "end": "1603-03-24", "group": "angleterre", "importance": 2, "description": "L'âge d'or élisabéthain, l'époque de Shakespeare." },
+    { "content": "Victoria", "start": "1837-06-20", "end": "1901-01-22", "group": "angleterre", "importance": 2, "description": "Plus de 63 ans de règne, à l'apogée de l'Empire britannique." },
+    { "content": "Élisabeth II", "start": "1952-02-06", "end": "2022-09-08", "group": "angleterre", "importance": 2, "description": "Le plus long règne de l'histoire britannique : 70 ans." }
+  ]
+}
