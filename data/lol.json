@@ -2,7 +2,7 @@
   "exemple": false,
   "joueur": "Alexcalibur#GRAAL",
   "serveur": "EUW",
-  "maj": "2026-11-20",
+  "maj": "2026-11-21",
   "classement": {
     "tier": "EMERALD",
     "rank": "III",
@@ -13,6 +13,12 @@
   "historique": [
     {
       "date": "2026-11-20",
+      "tier": "EMERALD",
+      "rank": "III",
+      "leaguePoints": 67
+    },
+    {
+      "date": "2026-11-21",
       "tier": "EMERALD",
       "rank": "III",
       "leaguePoints": 67
